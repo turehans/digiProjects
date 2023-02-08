@@ -21,7 +21,7 @@ int main(){
 	//call function that adds letters to array
 	addLetters();
 	for (int i = 0; i < 26; i++){
-		printf("Letter %i: %c",i ,scrabbleLetters[i].Letters);
+		printf("Letter %i: %c\n",i ,scrabbleLetters[i].Letters);
 	}
 } 
 

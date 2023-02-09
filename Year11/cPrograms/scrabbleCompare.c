@@ -27,6 +27,11 @@ int main(){
 	addLetters();
 	//call function that adds corresponding points
 	addPoints();
+	for (int i = 0; i < 26; i++){
+		printf("%c,", scrabbleLetters[i].Letters);
+		printf("%i\n" ,scrabbleLetters[i].Points);
+	}
+
 
 	//get first word
 	char* firstWord = malloc(8); 
@@ -46,9 +51,9 @@ int main(){
 
 	//find number of points in first word
 	int firstWordPoints = findPoints(firstWord);
-	printf("firstWordPoints: %i", firstWordPoints);
+	printf("firstWordPoints: %i\n", firstWordPoints);
 	int secondWordPoints = findPoints(secondWord);
-	printf("secondWordPoints: %i", secondWordPoints);
+	printf("secondWordPoints: %i\n", secondWordPoints);
 
 
 	//find better word and print it
@@ -100,10 +105,10 @@ void addPoints(){
 }
 
 int findPoints(char* word){
-	int numberPoints;
+	int numberPoints = 0;
 	for (int i = 0; i < strlen(word); i++){
 		for (int j = 0; j < 26; j++){
-			if (word[0] == scrabbleLetters[j].Letters){
+			if (word[i] == scrabbleLetters[j].Letters){
 				numberPoints += scrabbleLetters[j].Points;
 			}
 			

@@ -22,6 +22,10 @@ int main(){
 	//call function that adds letters to array
 	addLetters();
 	//call function that adds corresponding points
+	addPoints();
+
+
+	
 } 
 
 void addLetters(){
@@ -60,7 +64,9 @@ void addPoints(){
 		{
 			scrabbleLetters[i].Points = 10;
 		}
-		
-		
-				
+		else{
+			printf("Error: Not a valid Letter");
+			return 1;
+		}
 	}
+}

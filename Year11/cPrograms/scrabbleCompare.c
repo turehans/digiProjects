@@ -41,14 +41,15 @@ int main(){
 
 	//covert word to uppercase
 	toUppercase(firstWord);
-    printf("Your word was: %s\n",firstWord);
 	toUppercase(secondWord);
-    printf("Your word was: %s\n",secondWord);
 
 
 	//find number of points in first word
 	int firstWordPoints = findPoints(firstWord);
+	printf("firstWordPoints: %i", firstWordPoints);
 	int secondWordPoints = findPoints(secondWord);
+	printf("secondWordPoints: %i", secondWordPoints);
+
 
 	//find better word and print it
 	betterWord(firstWordPoints, secondWordPoints, firstWord, secondWord);

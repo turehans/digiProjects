@@ -23,9 +23,9 @@ int main(){
 	addLetters();
 	//call function that adds corresponding points
 	addPoints();
+	printf("First word: ");
+	char* firstWord = scanf("s");
 
-
-	
 } 
 
 void addLetters(){
@@ -66,7 +66,6 @@ void addPoints(){
 		}
 		else{
 			printf("Error: Not a valid Letter");
-			return 1;
 		}
 	}
 }

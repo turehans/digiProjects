@@ -6,8 +6,12 @@
 #include <strings.h>
 
 //declare functions
+void getInput(char *question, char *inputBuffer, int bufferLength);
 void addLetters();
 void addPoints();
+int findPoints(char* word);
+void toUppercase(char* word);
+void betterWord(int firstWordPoints, int secondWordPoints, char* firstWord, char* secondWord);
 
 //create struct scrabbleLetters
 struct scrabbleLetters {
@@ -23,9 +27,33 @@ int main(){
 	addLetters();
 	//call function that adds corresponding points
 	addPoints();
-	printf("First word: ");
-	char* firstWord = scanf("s");
 
+	//get first word
+	char* firstWord = malloc(8); 
+	getInput("Enter first word:", firstWord, 8);
+
+	
+
+	//get second word using function
+	char* secondWord = malloc(8); 
+	getInput("Enter second word:", secondWord, 8);
+
+
+	//covert word to uppercase
+	toUppercase(firstWord);
+    printf("Your word was: %s\n",firstWord);
+	toUppercase(secondWord);
+    printf("Your word was: %s\n",secondWord);
+
+
+	//find number of points in first word
+	int firstWordPoints = findPoints(firstWord);
+	int secondWordPoints = findPoints(secondWord);
+
+	//find better word and print it
+	betterWord(firstWordPoints, secondWordPoints, firstWord, secondWord);
+	free(firstWord);
+	free(secondWord);
 } 
 
 void addLetters(){
@@ -67,5 +95,57 @@ void addPoints(){
 		else{
 			printf("Error: Not a valid Letter");
 		}
+	}
+}
+
+int findPoints(char* word){
+	int numberPoints;
+	for (int i = 0; i < strlen(word); i++){
+		for (int j = 0; j < 26; j++){
+			if (word[0] == scrabbleLetters[j].Letters){
+				numberPoints += scrabbleLetters[j].Points;
+			}
+			
+		}
+	}
+	return numberPoints;
+}
+
+void betterWord(int firstWordPoints, int secondWordPoints, char* firstWord, char* secondWord){
+	if (firstWordPoints > secondWordPoints){
+		printf("%s is the better word\n", firstWord);
+	} else if (secondWordPoints > firstWordPoints){
+		printf("%s is the better word\n", secondWord);
+	} else {
+		printf("Both words are equivalent\n");
+	}
+}
+
+void getInput(char *statement, char *inputBuffer, int bufferLength){
+	printf("%s  (Max %d characters)\n", statement, bufferLength - 1);
+    fgets(inputBuffer, bufferLength, stdin);
+
+    if (inputBuffer[strlen(inputBuffer) -1] != '\n')
+    {
+        int dropped = 0;
+        while (fgetc(stdin) != '\n')
+            dropped++;
+
+        if (dropped > 0) // if they input exactly (bufferLength - 1) 
+                         // characters, there's only the \n to chop off
+        {
+            printf("Error word was to long!\n");
+            getInput(statement, inputBuffer, bufferLength);
+        }
+    }
+    else
+    {
+        inputBuffer[strlen(inputBuffer) -1] = '\0';      
+    }
+}
+
+void toUppercase(char* word){
+	for(int i = 0; i < strlen(word); i++){
+		word[i] = toupper(word[i]);
 	}
 }

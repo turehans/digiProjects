@@ -27,11 +27,6 @@ int main(){
 	addLetters();
 	//call function that adds corresponding points
 	addPoints();
-	for (int i = 0; i < 26; i++){
-		printf("%c,", scrabbleLetters[i].Letters);
-		printf("%i\n" ,scrabbleLetters[i].Points);
-	}
-
 
 	//get first word
 	char* firstWord = malloc(8); 

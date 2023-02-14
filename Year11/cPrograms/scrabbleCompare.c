@@ -29,7 +29,7 @@ int main(){
 	addPoints();
 
 	//get first word
-	char* firstWord = malloc(8); 
+	char* firstWord = malloc(8);
 	getInput("Enter first word:", firstWord, 8);
 
 	
@@ -44,27 +44,39 @@ int main(){
 	toUppercase(secondWord);
 
 
-	//find number of points in first word
+	//find number of points in first word and print it out
 	int firstWordPoints = findPoints(firstWord);
 	printf("firstWordPoints: %i\n", firstWordPoints);
+
+	//find number of points in first word and print it out
 	int secondWordPoints = findPoints(secondWord);
 	printf("secondWordPoints: %i\n", secondWordPoints);
 
 
 	//find better word and print it
 	betterWord(firstWordPoints, secondWordPoints, firstWord, secondWord);
+
+	//free the allocated memory
 	free(firstWord);
 	free(secondWord);
 } 
 
+/**
+ * 
+*/
 void addLetters(){
+	//
 	for (int i = 0; i < 26; i++){
 		scrabbleLetters[i].Letters = 'A' + i;
 	}
 }
 
+/**
+ * 
+*/
 void addPoints(){
 	for (int i = 0; i < 26; i++){
+		//TODO make switch
 		if (scrabbleLetters[i].Letters == 'A' || scrabbleLetters[i].Letters == 'E' || scrabbleLetters[i].Letters == 'I' || scrabbleLetters[i].Letters == 'O' || scrabbleLetters[i].Letters == 'U' || scrabbleLetters[i].Letters == 'L' || scrabbleLetters[i].Letters == 'N' || scrabbleLetters[i].Letters == 'S'|| scrabbleLetters[i].Letters == 'T' || scrabbleLetters[i].Letters == 'R')
 		{
 			scrabbleLetters[i].Points = 1;
